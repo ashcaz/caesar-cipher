@@ -1,10 +1,9 @@
 import nltk
 from string import ascii_lowercase, ascii_uppercase
 
-alphabet_lower = dict(zip(ascii_lowercase, range(1, 27)))  # found this on stackoverflow
-# print(alphabet_lower)
+alphabet_lower = ascii_lowercase
 
-alphabet_upper = dict(zip(ascii_uppercase, range(1, 27)))
+alphabet_upper = ascii_uppercase
 
 
 def encrypt(text_phrase: str, key: int) -> str:
@@ -21,25 +20,23 @@ def encrypt(text_phrase: str, key: int) -> str:
             encrypted_text += char
         else:
             if char.islower():
-                dict_needed = alphabet_lower
+                alphabet = alphabet_lower
             elif char.isupper():
-                dict_needed = alphabet_upper
+                alphabet = alphabet_upper
             else:
                 raise Exception(
                     "The text phrase inclues unknown characters. Phrases must be all letters."
                 )
 
-            new_value = dict_needed[char] + key
+            new_value = alphabet.index(char) + key
 
-            if new_value > 26 or new_value < -26:
+            if new_value > 25 or new_value < -25:
                 new_value = new_value % 26
 
-            if new_value <= 0:
+            if new_value < 0:
                 new_value = new_value + 26
 
-            for k in dict_needed.keys():
-                if new_value == dict_needed[k]:
-                    encrypted_text += k
+            encrypted_text += alphabet[new_value]
 
     return encrypted_text
 
@@ -47,12 +44,8 @@ def encrypt(text_phrase: str, key: int) -> str:
 def decrypt(text_phrase: str, key: int) -> str:
 
     decyrpted_message = encrypt(text_phrase, -key)
-    # print(-key)
     return decyrpted_message
 
 
 def crack(text_phrase: str, key: int) -> str:
     pass
-
-
-print(decrypt("BtimfZ", 1))
