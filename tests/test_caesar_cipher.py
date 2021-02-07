@@ -61,6 +61,40 @@ def test_encrypt_return_three(phrase_three):
     assert actual == expected
 
 
+# @pytest.mark.skip("pending")
+def test_encrypt_return_four(phrase_four):
+    actual = encrypt(phrase_four, 1)
+    expected = "J ibwf b Tfdsfu"
+    assert actual == expected
+
+
+# @pytest.mark.skip("pending")
+def test_decrypt_return_one(decode_phrase_1):
+    actual = decrypt(decode_phrase_1, 1)
+    expected = "abc"
+    assert actual == expected
+
+
+# @pytest.mark.skip("pending")
+def test_decrypt_return_two(decode_phrase_2):
+    actual = decrypt(decode_phrase_2, 1)
+    expected = "xyz"
+    assert actual == expected
+
+
+# @pytest.mark.skip("pending")
+def test_decrypt_return_three(decode_phrase_3):
+    actual = decrypt(decode_phrase_3, 1)
+    expected = "AshleY"
+    assert actual == expected
+
+
+def test_decrypt_return_four(decode_phrase_4):
+    actual = decrypt(decode_phrase_4, 1)
+    expected = "I have a Secret"
+    assert actual == expected
+
+
 #######################
 # Fixtures
 #######################
@@ -79,3 +113,28 @@ def phrase_two():
 @pytest.fixture
 def phrase_three():
     return "AshleY"
+
+
+@pytest.fixture
+def phrase_four():
+    return "I have a Secret"
+
+
+@pytest.fixture
+def decode_phrase_1():
+    return "bcd"
+
+
+@pytest.fixture
+def decode_phrase_2():
+    return "yza"
+
+
+@pytest.fixture
+def decode_phrase_3():
+    return "BtimfZ"
+
+
+@pytest.fixture
+def decode_phrase_4():
+    return "J ibwf b Tfdsfu"
