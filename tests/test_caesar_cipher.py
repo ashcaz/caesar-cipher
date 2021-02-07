@@ -19,17 +19,6 @@ def test_encrypt_phrase_not_str():
 
 
 # @pytest.mark.skip("pending")
-def test_encrypt_num_in_phrase():
-    with pytest.raises(Exception) as e:
-        encrypt("str1ng", 5)
-        print(str(e.value))
-    assert (
-        str(e.value)
-        == "The text phrase inclues unknown characters. Phrases must be all letters."
-    )
-
-
-# @pytest.mark.skip("pending")
 def test_encrypt_key_not_int():
     with pytest.raises(TypeError) as e:
         encrypt("string", "5")
@@ -95,6 +84,14 @@ def test_decrypt_return_four(decode_phrase_4):
     assert actual == expected
 
 
+def test_crack(quote):
+    actual = crack(quote)
+    expected = (
+        "So, I love you because the entire universe conspired to help me find you."
+    )
+    assert actual == expected
+
+
 #######################
 # Fixtures
 #######################
@@ -138,3 +135,8 @@ def decode_phrase_3():
 @pytest.fixture
 def decode_phrase_4():
     return "J ibwf b Tfdsfu"
+
+
+@pytest.fixture
+def quote():
+    return "So, I love you because the entire universe conspired to help me find you."

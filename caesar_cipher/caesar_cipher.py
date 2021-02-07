@@ -1,9 +1,12 @@
-import nltk
 from string import ascii_lowercase, ascii_uppercase
+import nltk
+
+nltk.download("words", quiet=True)
+from nltk.corpus import words
 
 alphabet_lower = ascii_lowercase
-
 alphabet_upper = ascii_uppercase
+word_list = words.words()
 
 
 def encrypt(text_phrase: str, key: int) -> str:
@@ -29,17 +32,13 @@ def encrypt(text_phrase: str, key: int) -> str:
     encrypted_text = ""
 
     for char in text_phrase:
-        if char == " ":
+        if not char.isalpha():
             encrypted_text += char
         else:
             if char.islower():
                 alphabet = alphabet_lower
             elif char.isupper():
                 alphabet = alphabet_upper
-            else:
-                raise Exception(
-                    "The text phrase inclues unknown characters. Phrases must be all letters."
-                )
 
             new_value = alphabet.index(char) + key
 
@@ -69,5 +68,10 @@ def decrypt(text_phrase: str, key: int) -> str:
     return decyrpted_message
 
 
-def crack(text_phrase: str, key: int) -> str:
-    pass
+def crack(encrypted_phrase: str) -> str:
+
+    for num in range(26):
+        decrypted = decrypt(encrypted_phrase, num)
+        decrypted_split = decrypted.split()
+        return best_match
+        # A little stuck on where to go from here
