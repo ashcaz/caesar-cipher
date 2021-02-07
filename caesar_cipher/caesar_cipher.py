@@ -7,6 +7,19 @@ alphabet_upper = ascii_uppercase
 
 
 def encrypt(text_phrase: str, key: int) -> str:
+    """[encrypts you phrase by shifting letters equal to the key]
+
+    Args:
+        text_phrase (str): [phrse you want to encrypt]
+        key (int): [amount to shift]
+
+    Raises:
+        TypeError: [when phrase is not a str and when key is not an int]
+        Exception: [When you use characters that are not a-z]
+
+    Returns:
+        str: [encypted phrase]
+    """
 
     if type(text_phrase) != str or type(key) != int:
         raise TypeError(
@@ -42,6 +55,15 @@ def encrypt(text_phrase: str, key: int) -> str:
 
 
 def decrypt(text_phrase: str, key: int) -> str:
+    """[Will decrypt a phrase with the provided key]
+
+    Args:
+        text_phrase (str): [Phrase you want to decrypt]
+        key (int): [amount to shift]
+
+    Returns:
+        str: [decrypted message]
+    """
 
     decyrpted_message = encrypt(text_phrase, -key)
     return decyrpted_message
