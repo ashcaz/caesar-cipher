@@ -1,4 +1,5 @@
 import pytest
+from random import randint
 from caesar_cipher.caesar_cipher import encrypt, decrypt, crack
 from caesar_cipher import __version__
 
@@ -86,9 +87,7 @@ def test_decrypt_return_four(decode_phrase_4):
 
 def test_crack(quote):
     actual = crack(quote)
-    expected = (
-        "So, I love you because the entire universe conspired to help me find you."
-    )
+    expected = "It was the best of times, it was the worst of times."
     assert actual == expected
 
 
@@ -139,4 +138,6 @@ def decode_phrase_4():
 
 @pytest.fixture
 def quote():
-    return "So, I love you because the entire universe conspired to help me find you."
+    phrase = "It was the best of times, it was the worst of times."
+    encrypted = encrypt(phrase, randint(0, 26))
+    return encrypted

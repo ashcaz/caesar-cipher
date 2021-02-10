@@ -1,4 +1,5 @@
 from string import ascii_lowercase, ascii_uppercase
+import operator
 import nltk
 
 nltk.download("words", quiet=True)
@@ -64,14 +65,26 @@ def decrypt(text_phrase: str, key: int) -> str:
         str: [decrypted message]
     """
 
-    decyrpted_message = encrypt(text_phrase, -key)
-    return decyrpted_message
+    return encrypt(text_phrase, -key)
 
 
 def crack(encrypted_phrase: str) -> str:
 
+    if type(encrypted_phrase) != str:
+        return False
+
+    decrypt_dict = {}
     for num in range(26):
+
         decrypted = decrypt(encrypted_phrase, num)
-        decrypted_split = decrypted.split()
-        return best_match
-        # A little stuck on where to go from here
+        decrypted_words_list = decrypted.split()
+        readable_words = 0
+
+        for word in decrypted_words_list:
+            if word in word_list:
+                readable_words += 1
+
+        decrypt_dict[readable_words] = decrypted
+
+    return decrypt_dict[max(decrypt_dict.keys())]
+    # A little stuck on where to go from here
