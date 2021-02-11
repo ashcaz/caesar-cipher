@@ -69,6 +69,14 @@ def decrypt(text_phrase: str, key: int) -> str:
 
 
 def crack(encrypted_phrase: str) -> str:
+    """[decode the cipher so that an encrypted message can be transformed into its original state WITHOUT access to the key]
+
+    Args:
+        encrypted_phrase (str): [encrypted string]
+
+    Returns:
+        str: [decrypted str]
+    """
 
     if type(encrypted_phrase) != str:
         return False
@@ -87,4 +95,3 @@ def crack(encrypted_phrase: str) -> str:
         decrypt_dict[readable_words] = decrypted
 
     return decrypt_dict[max(decrypt_dict.keys())]
-    # A little stuck on where to go from here
